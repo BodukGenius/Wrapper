@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -399,9 +400,9 @@ namespace ConsoleApp1
 
             var type = WrappedModelBase<IModel>.BuildTypeIntoModule(mb);
             var factory = BuildFactory<IModel>(type);
-            var m = factory(new Model() { Property = "Initial" });
-            Console.WriteLine(m.Property);
-            m.Property = "Test";
+
+            var wm = factory(new Model() { Property = "Initial" });
+            wm.Property = "Test";
         }
 
         private static Func<TModel, TModel> BuildFactory<TModel>(Type type)
